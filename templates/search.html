@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Corpus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('search_corpus') }}">Search Corpus</a>
+        <a href="{{ url_for('upload_file') }}">Upload File</a>
+        <a href="{{ url_for('view_corpus') }}">View Corpus</a>
+    </div>
+    
+    <div class="container">
+        <h1>Search Corpus</h1>
+        <form method="POST" action="{{ url_for('search_corpus') }}">
+            <label for="query">Search Query:</label>
+            <input type="text" id="query" name="query" value="{{ query }}">
+            <button type="submit">Search</button>
+        </form>
+
+        <h2>Search Results:</h2>
+        <ul>
+            {% for result in results %}
+                <li>
+                    <strong>{{ result.filename }}</strong><br>
+                    <pre>{{ result.original_content }}</pre>
+                </li>
+            {% endfor %}
+        </ul>
+        <br>
+        <a href="{{ url_for('upload_file') }}">Upload Another File</a><br>
+        <a href="{{ url_for('view_corpus') }}">View Corpus</a>
+    </div>
+</body>
+</html>

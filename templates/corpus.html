@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Corpus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('search_corpus') }}">Search Corpus</a>
+        <a href="{{ url_for('upload_file') }}">Upload File</a>
+        <a href="{{ url_for('view_corpus') }}">View Corpus</a>
+    </div>
+    <div class="container">
+        <h1>Corpus Data</h1>
+        <ul>
+            {% for doc in corpus_data %}
+                <li>
+                    <strong>{{ doc.filename }}</strong><br>
+                    <pre>{{ doc.original_content }}</pre>
+                </li>
+            {% endfor %}
+        </ul>
+        <br>
+        <a href="{{ url_for('search_corpus') }}">Search Corpus</a><br>
+        <a href="{{ url_for('upload_file') }}">Upload Another File</a>
+    </div>
+</body>
+</html>
